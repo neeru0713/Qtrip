@@ -33,20 +33,17 @@ function addCityToDOM(id, city, description, image) {
   carddiv.classList.add("col-md-6")
   let myhtml = `
   
-//       <a href="./pages/adventures/?city=${city}" id="${id}">
-//         <div class="tile">
-//           <h3 class="tile-text position-absolute card-heading">${city}</h3>
-//           <p class="tile-text card-subheading">${description}</p>
-//           <img class="img-fluid" src="${image}">
-//         </div>
-//       </a>
+       <a href="./pages/adventures/?city=${city}" id="${id}">
+         <div class="tile">
+           <h3 class="tile-text position-absolute card-heading">${city}</h3>
+           <p class="tile-text card-subheading">${description}</p>
+           <img class="img-fluid" src="${image}">
+         </div>
+       </a>
     
   `
   carddiv.innerHTML = myhtml
   datadiv.appendChild(carddiv)
-  
-
-
 }
 
 export { init, fetchCities, addCityToDOM };

@@ -191,8 +191,8 @@ app.post("/adventures/new", (req, res) => {
     let index = randomInteger(0, 100);
     images.push(images_collection[index]);
   }
-
-  const city = req.body.city;
+  // console.log(",,,,,",req.body.city)
+  const city = "goa";
   const nanoid = customAlphabet("1234567890", 10);
   const id = nanoid();
   const name = places[Math.floor(Math.random() * places.length)];

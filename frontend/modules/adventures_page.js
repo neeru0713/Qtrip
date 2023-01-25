@@ -1,17 +1,31 @@
 
+
 import config from "../conf/index.js";
 
 //Implementation to extract city from query params
 function getCityFromURL(search) {
+  console.log(search)
+  
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
+  let ans = search.split("=")
+  return ans[1].replace(/%20/g, " ").toLowerCase();
 
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
+ 
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
+  try{
+    let data = await fetch(`${config.backendEndpoint}/adventures?city=${city}`);
+    console.log(data)
+    return data.json();
+     } catch(e) {
+    return null;
+  }
+
 
 }
 
@@ -19,6 +33,33 @@ async function fetchAdventures(city) {
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
+    let parentdiv = document.querySelector("#data")
+    for( let i=0;i<adventures.length;i++){
+      let mydiv = document.createElement("div")
+      mydiv.classList.add("col-lg-3", "col-sm-6", "col-xs-6", "col-md-4")
+      let result =  `
+      <a href="./detail/?adventure=${adventures[i].id}" id="${adventures[i].id}">
+      <div class="adventure-card activity-card">
+         <span class="category-banner">${adventures[i].category}</span>
+         <img class="" src="${adventures[i].image}">
+         <div class="card-content d-flex flex-column w-100">
+             <div class="d-flex justify-content-between px-2">
+                 <h6>${adventures[i].name}</h6> 
+                 <p> ${adventures[i].currency} ${adventures[i].costPerHead}</p>
+             </div>
+             <div class="d-flex justify-content-between px-2">
+                 <h6>Duration</h6>
+                 <p>${adventures[i].duration}</p>
+             </div>
+         </div>
+     </div>
+ </a>
+  
+`
+  mydiv.innerHTML = result
+
+parentdiv.appendChild(mydiv)
+ }
 
 }
 
@@ -39,9 +80,9 @@ function filterByCategory(list, categoryList) {
 // filters object looks like this filters = { duration: "", category: [] };
 
 //Implementation of combined filter function that covers the following cases :
-// 1. Filter by duration only
-// 2. Filter by category only
-// 3. Filter by duration and category together
+// 1. filter by duration only
+// 2. filter by category only
+// 3. filter by duration and category together
 
 function filterFunction(list, filters) {
   // TODO: MODULE_FILTERS
@@ -80,6 +121,9 @@ function generateFilterPillsAndUpdateDOM(filters) {
   // 1. Use the filters given as input, update the Duration Filter value and Generate Category Pills
 
 }
+
+
+
 export {
   getCityFromURL,
   fetchAdventures,
@@ -89,5 +133,5 @@ export {
   filterFunction,
   saveFiltersToLocalStorage,
   getFiltersFromLocalStorage,
-  generateFilterPillsAndUpdateDOM,
+  generateFilterPillsAndUpdateDOM
 };
