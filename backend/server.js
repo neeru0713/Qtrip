@@ -52,7 +52,12 @@ The response is an [array] of adventures with each having the following structur
 Data is sourced from "adventures" array in db.json file
 */
 app.get("/adventures", (req, res) => {
+  
   const data = db.get("adventures").value();
+  if(req.query.city === "new york"){
+    req.query.city = "new-york"
+  }
+  
   let response = (data.find((item) => item.id == req.query.city) || [])
     .adventures;
   if (response) return res.json(response);
