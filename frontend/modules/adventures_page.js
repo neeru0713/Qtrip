@@ -1,5 +1,4 @@
 
-
 import config from "../conf/index.js";
 
 //Implementation to extract city from query params
@@ -133,5 +132,5 @@ export {
   filterFunction,
   saveFiltersToLocalStorage,
   getFiltersFromLocalStorage,
-  generateFilterPillsAndUpdateDOM
+  generateFilterPillsAndUpdateDOM,
 };

@@ -90,11 +90,8 @@
 
 
             </div>
-
-            
             <!-- Display Adventures cards -->
-            <div class="row" id="data">
-            </div>
+            <div class="row" id="data"></div>
         </div>
     </div>
     <!-- Footer -->
@@ -136,14 +133,12 @@
 
         //entry point (executed when DOM is loaded)
         (async function () {
+
             //Fetches the City from URL query param (here : window.location.search is an in-built browser property that returns the query param from URL, example: http://localhost:8081/?city=bengaluru => window.location.search would return "?city=bengaluru")
-            city = await getCityFromURL(window.location.search);
-            console.log(city)
+            let city = await getCityFromURL(window.location.search);
 
             //Fetches the adventures for the particular city
             adventures = await fetchAdventures(city);
-            console.log(adventures);
-
 
             //Applies filters on the adventures list
             let filteredAdventures = filterFunction(adventures, filters);
