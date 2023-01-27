@@ -17,9 +17,9 @@ async function fetchAdventureDetails(adventureId) {
   try{
     let ans = await fetch(`${config.backendEndpoint}/adventures/detail?adventure=${adventureId} `)
     
-      return ans.text().then(function(text) {
-        return text ? JSON.parse(text) : {}
-      })
+    return ans.text().then(function(text) {
+      return text ? JSON.parse(text) : {}
+    })
     
     
   } catch(e){
