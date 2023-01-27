@@ -1,4 +1,3 @@
-
 import config from "../conf/index.js";
 
 //Implementation to extract adventure ID from query params

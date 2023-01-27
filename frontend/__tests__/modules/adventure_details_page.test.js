@@ -47,10 +47,10 @@ describe("Adventure Detail Page Tests", function () {
   });
 
   it("Check if fetch call for the adventure details was made and data was received", async () => {
-    const data = await fetchAdventureDetails("5328424651");
+    const data = await fetchAdventureDetails("123");
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(
-      expect.stringContaining("?adventure=5328424651")
+      expect.stringContaining("?adventure=123")
     );
   });
 
