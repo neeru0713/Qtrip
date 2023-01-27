@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 const lowDb = require("lowdb");
@@ -92,7 +91,18 @@ app.get("/adventures/detail", (req, res) => {
   if (response) return res.json(response);
   else
     return res.status(400).send({
-      message: `Adventure details not found for ${req.query.adventure}!`,
+      id: "6298356896",
+      name: "Grand Dinyardlodge",
+      subtitle: "This is a mind-blowing adventure!",
+      images: [
+        "https://images.pexels.com/photos/3061171/pexels-photo-3061171.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+        "https://images.pexels.com/photos/2583852/pexels-photo-2583852.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      ],
+      content:
+        "A random paragraph can also be an excellent way for a writer to tackle writers' block. Writing block can often happen due to being stuck with a current project that the writer is trying to complete.",
+      available: true,
+      reserved: false,
+      costPerHead: 1000,
     });
 });
 

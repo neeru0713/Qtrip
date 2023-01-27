@@ -15,11 +15,13 @@ async function fetchAdventureDetails(adventureId) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Fetch the details of the adventure by making an API call
   try{
-    let ans = await fetch(`${config.backendEndpoint}/adventures/detail?adventure=123`)
-   
-
-    if(ans.status === 400) return {}
-    return ans.json()
+    let ans = await fetch(`${config.backendEndpoint}/adventures/detail?adventure=${adventureId} `)
+    
+      return ans.text().then(function(text) {
+        return text ? JSON.parse(text) : {}
+      })
+    
+    
   } catch(e){
     return null;
   }
@@ -39,12 +41,8 @@ function addAdventureDetailsToDOM(adventure) {
 
   let adventureContent = document.querySelector("#adventure-content")
   adventureContent.innerHTML = `<p>${adventure.content}</p>`
-
   document.querySelector("#adventure-name").innerHTML = adventure.name
-
   document.querySelector("#adventure-subtitle").innerHTML = adventure.subtitle
-
-  
 }
 
 //Implementation of bootstrap gallery component
