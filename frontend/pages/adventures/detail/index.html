@@ -60,7 +60,7 @@
                             <a href="../../../" style="color: orange !important">explore.</a>
                         </div>
                         <div id="reservation-panel-available">
-                            <form id="myForm" action="" method="">
+                            <form id="myForm" method="" action="">
                                 <label>Name</label>
                                 <input type="text" class="form-control" name="name" required />
                                 <br />
@@ -94,6 +94,7 @@
                                     </div>
                                 </div>
                                 <button class="reserve-button" type="submit">Reserve</button>
+
                             </form>
                         </div>
                     </div>
@@ -120,16 +121,23 @@
             captureFormSubmit,
             calculateReservationCostAndUpdateDOM,
             showBannerIfAlreadyReserved,
+        
         } from "../../../modules/adventure_details_page.js";
         (async function () {
             let adventureId = await getAdventureIdFromURL(window.location.search);
-            console.log(adventureId)
             let adventureDetails = await fetchAdventureDetails(adventureId);
-            console.log(adventureDetails)
             addAdventureDetailsToDOM(adventureDetails);
             addBootstrapPhotoGallery(adventureDetails.images);
             conditionalRenderingOfReservationPanel(adventureDetails);
-            captureFormSubmit(adventureDetails);
+
+            let form = document.querySelector("#myForm")
+            form.addEventListener("submit" ,function(event){
+                
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                captureFormSubmit(adventureDetails)
+            } )
+    
             showBannerIfAlreadyReserved(adventureDetails);
             function onPersonsChange(event) {
                 calculateReservationCostAndUpdateDOM(
@@ -138,6 +146,7 @@
                 );
             }
             window.onPersonsChange = onPersonsChange;
+            
         })();
     </script>
 </body>
